@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import { publish } from "./PubSub";
 import { CONSENT_SUBMITTED } from "../constants";
 
-const Button = () => (
+const Form = () => (
   <Formik
     initialValues={{ name: "" }}
     onSubmit={() => publish(CONSENT_SUBMITTED, { submitted: true })}
@@ -34,4 +34,4 @@ const Button = () => (
   </Formik>
 );
 
-export default Button;
+export default Form;

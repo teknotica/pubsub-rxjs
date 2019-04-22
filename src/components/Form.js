@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-import { publish } from "./PubSub";
+import { publish } from "./Subscriber";
 import { CONSENT_SUBMITTED } from "../constants";
 
 const Form = () => (

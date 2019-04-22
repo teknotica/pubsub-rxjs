@@ -6,21 +6,21 @@ import { filter } from "rxjs/operators";
 const mainSubject = new Subject();
 
 // This function is used to publish data to the Subject via next().
-export const publish = (topic, data) => {
-  mainSubject.next({ topic, data });
-};
+export const publish = (topic, data) => mainSubject.next({ topic, data });
 
 export class Subscriber extends Component {
-  subscribedTopics = null;
+  subscribedTopics = [];
 
   constructor(props) {
     super(props);
 
-    this.state = { topic: props.topic, data: null };
+    this.state = { topic: null, data: null };
+
+    const { topic } = this.props;
 
     this.subscribedTopics = mainSubject
-      .pipe(filter(f => f.topic === this.state.topic))
-      .subscribe(s => this.setState({ data: s.data }));
+      .pipe(filter(f => f.topic === topic))
+      .subscribe(s => this.setState({ topic: topic, data: s.data }));
   }
 
   componentWillUnmount() {
